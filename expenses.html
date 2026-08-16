@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Farm Expenses</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+    <div class="language-box">
+        <button id="languageBtn" onclick="toggleExpenseLanguage()">
+            🌐 తెలుగు
+        </button>
+    </div>
+
+    <h1 id="expenseTitle">💰 Farm Expenses</h1>
+
+    <p id="expenseSubtitle">
+        Seeds, Petrol, Diesel and Other Expenses
+    </p>
+
+    <a href="index.html" class="back-btn" id="backBtn">
+        ⬅️ Back to Work Records
+    </a>
+
+</header>
+
+    <main>
+
+        <!-- =========================
+     ADD EXPENSE
+========================= -->
+
+<section class="expense-section">
+
+    <h2 id="addExpenseTitle">
+        💰 Add Farm Expense
+    </h2>
+
+    <form id="expenseForm">
+
+        <label for="expenseDate" id="expenseDateLabel">
+            📅 Date
+        </label>
+
+        <input
+            type="date"
+            id="expenseDate"
+            required
+        >
+
+
+        <label for="expenseType" id="expenseTypeLabel">
+            💰 Expense Type
+        </label>
+
+        <select id="expenseType" required>
+
+            <option value="">
+                Select Expense
+            </option>
+
+            <option value="Seeds">
+                🌱 Seeds
+            </option>
+
+            <option value="Petrol">
+                ⛽ Petrol
+            </option>
+
+            <option value="Diesel">
+                🛢️ Diesel
+            </option>
+
+            <option value="Fertilizer">
+                🌾 Fertilizer
+            </option>
+
+            <option value="Pesticide">
+                💊 Pesticides
+            </option>
+
+            <option value="Tractor">
+                🚜 Tractor
+            </option>
+
+            <option value="Electricity">
+                ⚡ Electricity
+            </option>
+
+            <option value="Water">
+                💧 Water / Irrigation
+            </option>
+
+            <option value="Transport">
+                🚚 Transport
+            </option>
+
+            <option value="Other">
+                📦 Other
+            </option>
+
+        </select>
+
+
+        <label for="expenseAmount" id="expenseAmountLabel">
+            💵 Amount
+        </label>
+
+        <input
+            type="number"
+            id="expenseAmount"
+            placeholder="Enter Amount"
+            min="0"
+            required
+        >
+
+
+        <label for="expenseNotes" id="expenseNotesLabel">
+            📝 Notes
+        </label>
+
+        <textarea
+            id="expenseNotes"
+            placeholder="Enter details"
+        ></textarea>
+
+
+        <button type="submit" id="saveExpenseBtn">
+            💾 Save Expense
+        </button>
+
+    </form>
+
+</section>
+
+
+        <!-- =========================
+             EXPENSE RECORDS
+        ========================== -->
+
+        <section class="records-section">
+
+    <h2 id="expenseRecordsTitle">
+        📋 Farm Expense Records
+    </h2>
+
+    <div id="expensesList">
+        <!-- Expenses will appear here -->
+    </div>
+
+</section>
+    </main>
+
+
+    <script src="expenses.js"></script>
+
+</body>
+
+</html>

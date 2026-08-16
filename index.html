@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Farm Work Records</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- =========================
+     SPLASH SCREEN
+========================== -->
+
+<div id="splash-screen">
+
+    <img
+        src="image/farm work record logo.jpeg"
+        alt="Farm Work Record Logo"
+        class="center-image">
+
+    <!-- Animated Project Name -->
+    <div class="project-name">
+        <span>F</span>
+        <span>A</span>
+        <span>R</span>
+        <span>M</span>
+        <span class="space">&nbsp;</span>
+        <span>W</span>
+        <span>O</span>
+        <span>R</span>
+        <span>K</span>
+        <span class="space">&nbsp;</span>
+        <span>R</span>
+        <span>E</span>
+        <span>C</span>
+        <span>O</span>
+        <span>R</span>
+        <span>D</span>
+    </div>
+
+    <p class="project-subtitle">
+    Digital Farm Record Management
+</p>
+
+</div>
+    <!-- =========================
+         HOME PAGE
+    ========================== -->
+
+    <div id="home-page">
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header>
+
+            <div class="language-box">
+
+                <button
+                    id="languageBtn"
+                    onclick="toggleLanguage()"
+                >
+                    🌐 తెలుగు
+                </button>
+
+            </div>
+
+
+            <h1 id="title">
+                🌾 Farm Work Records
+            </h1>
+
+            <p id="subtitle">
+                Field & Workers Details
+            </p>
+
+
+            <!-- =========================
+                 PAGE LINKS
+            ========================== -->
+
+            <div class="page-links">
+
+                <a
+                    href="expenses.html"
+                    class="expense-page-btn"
+                >
+                    💰 Farm Expenses
+                </a>
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             MAIN
+        ========================== -->
+
+        <main>
+
+
+            <!-- =========================
+                 FARM DASHBOARD
+            ========================== -->
+
+            <section class="dashboard-section">
+
+                <h2 id="dashboardTitle">
+                    📊 Farm Dashboard
+                </h2>
+
+
+                <div class="dashboard-box">
+
+
+                    <!-- TOTAL WORKERS -->
+
+                    <div class="dashboard-card">
+
+                        <h3 id="dashboardWorkers">
+                            0
+                        </h3>
+
+                        <p>
+                            👨‍🌾 Total Workers
+                        </p>
+
+                    </div>
+
+
+                    <!-- WORK RECORDS -->
+
+                    <div class="dashboard-card">
+
+                        <h3 id="dashboardRecords">
+                            0
+                        </h3>
+
+                        <p>
+                            📋 Work Records
+                        </p>
+
+                    </div>
+
+
+                    <!-- WORK AMOUNT -->
+
+                    <div class="dashboard-card">
+
+                        <h3>
+                            ₹<span id="dashboardWorkAmount">0</span>
+                        </h3>
+
+                        <p>
+                            💰 Work Amount
+                        </p>
+
+                    </div>
+
+
+                    <!-- FARM EXPENSES -->
+
+                    <div class="dashboard-card">
+
+                        <h3>
+                            ₹<span id="dashboardExpenseAmount">0</span>
+                        </h3>
+
+                        <p>
+                            💵 Farm Expenses
+                        </p>
+
+                    </div>
+
+
+                    <!-- GRAND TOTAL -->
+
+                    <div class="dashboard-card">
+
+                        <h3>
+                            ₹<span id="dashboardGrandTotal">0</span>
+                        </h3>
+
+                        <p>
+                            📊 Grand Total
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 ADD WORK RECORD
+            ========================== -->
+
+            <section class="form-section">
+
+                <h2 id="addRecordTitle">
+                    Add Work Record
+                </h2>
+
+
+                <form id="workForm">
+
+
+                    <!-- DATE -->
+
+                    <label
+                        id="dateLabel"
+                        for="date"
+                    >
+                        📅 Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        required
+                    >
+
+
+
+                    <!-- WORKER NAME -->
+
+                    <label
+                        id="workerNameLabel"
+                        for="workerName"
+                    >
+                        👨‍🌾 Worker Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="workerName"
+                        placeholder="Enter worker name"
+                        required
+                    >
+
+
+
+                    <!-- LAND SIZE -->
+
+                    <label
+                        id="landSizeLabel"
+                        for="landSize"
+                    >
+                        🌱 Field Size (Acres)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="landSize"
+                        placeholder="Example: 3.5"
+                        step="0.01"
+                        min="0"
+                        required
+                    >
+
+
+
+                    <!-- WORK TYPE -->
+
+                    <label
+                        id="workTypeLabel"
+                        for="workType"
+                    >
+                        🚜 Work Type
+                    </label>
+
+                    <select
+                        id="workType"
+                        required
+                    >
+
+                        <option value="">
+                            Select Work
+                        </option>
+
+
+                        <option value="Sallu">
+                            Araka (Sallu) - ₹700 / Acre
+                        </option>
+
+
+                        <option value="Guntaka">
+                            Araka (Guntaka) - ₹700 / Acre
+                        </option>
+
+
+                        <option value="Mekullu">
+                            Araka (Mekullu) - ₹700 / Acre
+                        </option>
+
+
+                        <option value="Mandhu">
+                            Araka (Mandhu) - ₹700 / Acre
+                        </option>
+
+
+                        <option value="TractorGorru">
+                            Tractor (Gorru) - ₹800 / Acre
+                        </option>
+
+
+                        <option value="TractorSallu">
+                            Tractor (Sallu) - ₹800 / Acre
+                        </option>
+
+
+                        <option value="TractorBochallu">
+                            Tractor (Bochallu) - ₹1500 / Acre
+                        </option>
+
+
+                        <option value="TractorRotavater">
+                            Tractor (Rotavater) - ₹1500 / Acre
+                        </option>
+
+
+                        <option value="fertilizer spray">
+                            Tractor (Fertilizer Spray) - ₹300 / Acre
+                        </option>
+
+
+                        <option value="Uprooting chilli plants with a tractor">
+                            Uprooting chilli plants with a tractor - ₹1500 / Acre
+                        </option>
+
+
+                        <option value="Uprooting cotton stalks">
+                            Uprooting cotton stalks - ₹1200 / Acre
+                        </option>
+
+
+                        <option value="Field Work">
+                            Field Work
+                        </option>
+
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+
+
+                    <!-- WORKERS COUNT -->
+
+                    <label
+                        id="workersCountLabel"
+                        for="workersCount"
+                    >
+                        👥 Number of Workers
+                    </label>
+
+                    <input
+                        type="number"
+                        id="workersCount"
+                        placeholder="Enter workers count"
+                        min="1"
+                        required
+                    >
+
+
+
+                    <!-- AMOUNT -->
+
+                    <label
+                        id="amountLabel"
+                        for="amount"
+                    >
+                        💰 Total Amount
+                    </label>
+
+                    <input
+                        type="number"
+                        id="amount"
+                        placeholder="Amount will calculate automatically"
+                        readonly
+                    >
+
+
+
+                    <!-- NOTES -->
+
+                    <label
+                        id="notesLabel"
+                        for="notes"
+                    >
+                        📝 Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        placeholder="Enter extra details"
+                    ></textarea>
+
+
+
+                    <!-- SAVE -->
+
+                    <button
+                        type="submit"
+                        id="saveBtn"
+                    >
+                        💾 Save Record
+                    </button>
+
+
+                </form>
+
+            </section>
+
+
+
+            <!-- =========================
+                 WORK RECORDS
+            ========================== -->
+
+            <section class="records-section">
+
+                <h2 id="recordsTitle">
+                    📋 Work Records
+                </h2>
+
+
+                <!-- SEARCH -->
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="🔍 Search worker name..."
+                >
+
+
+                <!-- RECORDS -->
+
+                <div id="recordsList">
+
+                    <!-- JavaScript records appear here -->
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 SUMMARY
+            ========================== -->
+
+            <section class="summary">
+
+                <h2 id="summaryTitle">
+                    📊 Summary
+                </h2>
+
+
+                <div class="summary-box">
+
+
+                    <!-- TOTAL WORKERS -->
+
+                    <div>
+
+                        <h3 id="totalWorkers">
+                            0
+                        </h3>
+
+                        <p id="totalWorkersLabel">
+                            Total Workers
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- TOTAL RECORDS -->
+
+                    <div>
+
+                        <h3 id="totalRecords">
+                            0
+                        </h3>
+
+                        <p id="totalRecordsLabel">
+                            Total Records
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- WORKER AMOUNT -->
+
+                    <div>
+
+                        <h3>
+                            ₹<span id="totalAmount">0</span>
+                        </h3>
+
+                        <p id="totalAmountLabel">
+                            Worker Amount
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- FARM EXPENSE -->
+
+                    <div>
+
+                        <h3>
+                            ₹<span id="farmExpenseAmount">0</span>
+                        </h3>
+
+                        <p>
+                            💰 Farm Expenses
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- GRAND TOTAL -->
+
+                    <div>
+
+                        <h3>
+                            ₹<span id="grandTotalAmount">0</span>
+                        </h3>
+
+                        <p>
+                            💵 Grand Total
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer>
+
+            <p id="footerText">
+                🌾 Farm Work Records |
+                Developed by BHUKYA SAIDA NAIK
+            </p>
+
+
+            <a
+                href="mailto:saidabhukya060@gmail.com"
+                style="color: olive;"
+            >
+                saidabhukya060@gmail.com
+            </a>
+
+        </footer>
+
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
