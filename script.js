@@ -1406,7 +1406,7 @@ window.addEventListener(
                         "block";
 
                 },
-                5000
+                10000
             );
 
         }
