@@ -1721,16 +1721,3 @@ window.addEventListener("load", function () {
     typeProjectName();
 
 });
-let totalAcres = 0;
-
-workRecords.forEach(function(record) {
-    totalAcres += Number(record.landSize) || 0;
-});
-
-const dashboardAcres = document.getElementById("dashboardAcres");
-
-if (dashboardAcres) {
-    dashboardAcres.textContent = totalAcres.toLocaleString("en-IN", {
-        maximumFractionDigits: 2
-    });
-}
