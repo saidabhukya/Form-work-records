@@ -10,8 +10,10 @@
 const workForm = document.getElementById("workForm");
 const recordsList = document.getElementById("recordsList");
 const searchInput = document.getElementById("search");
+const filterWorkType = document.getElementById("filterWorkType");
 
 const totalWorkers = document.getElementById("totalWorkers");
+const totalAcres = document.getElementById("totalAcres");
 const totalRecords = document.getElementById("totalRecords");
 const totalAmount = document.getElementById("totalAmount");
 
@@ -358,15 +360,22 @@ function displayRecords(searchText = "") {
             .toLowerCase()
             .trim();
 
+    const selectedType =
+        filterWorkType ? filterWorkType.value : "";
+
 
     const filteredRecords =
         records.filter(function (record) {
 
-            return String(
-                record.workerName || ""
-            )
-                .toLowerCase()
-                .includes(search);
+            const matchesSearch =
+                String(record.workerName || "")
+                    .toLowerCase()
+                    .includes(search);
+
+            const matchesType =
+                !selectedType || record.workType === selectedType;
+
+            return matchesSearch && matchesType;
 
         });
 
@@ -658,7 +667,7 @@ function getWorkName(type) {
 
 
 // ==========================================
-// SEARCH
+// SEARCH & FILTER
 // ==========================================
 
 if (searchInput) {
@@ -668,6 +677,20 @@ if (searchInput) {
         function () {
 
             displayRecords(this.value);
+
+        }
+    );
+
+}
+
+
+if (filterWorkType) {
+
+    filterWorkType.addEventListener(
+        "change",
+        function () {
+
+            displayRecords(searchInput ? searchInput.value : "");
 
         }
     );
@@ -836,6 +859,8 @@ function updateSummary() {
 
     let amount = 0;
 
+    let acres = 0;
+
 
     records.forEach(function (record) {
 
@@ -845,6 +870,9 @@ function updateSummary() {
         amount +=
             Number(record.amount) || 0;
 
+        acres +=
+            Number(record.landSize) || 0;
+
     });
 
 
@@ -852,6 +880,14 @@ function updateSummary() {
 
         totalWorkers.textContent =
             workers;
+
+    }
+
+
+    if (totalAcres) {
+
+        totalAcres.textContent =
+            parseFloat(acres.toFixed(2));
 
     }
 
@@ -1046,8 +1082,80 @@ function toggleLanguage() {
 
 
         setText(
+            "totalAcresLabel",
+            "మొత్తం ఎకరాలు"
+        );
+
+
+        setText(
             "totalAmountLabel",
             "మొత్తం మొత్తం"
+        );
+
+
+        setText(
+            "farmExpenseLabel",
+            "💰 పొలం ఖర్చులు"
+        );
+
+
+        setText(
+            "grandTotalLabel",
+            "💵 మొత్తం ఖర్చు"
+        );
+
+
+        setText(
+            "dashboardTitle",
+            "📊 ఫామ్ డ్యాష్‌బోర్డ్"
+        );
+
+
+        setText(
+            "dashboardWorkersLabel",
+            "👨‍🌾 మొత్తం కూలీలు"
+        );
+
+
+        setText(
+            "dashboardAcresLabel",
+            "🌱 మొత్తం ఎకరాలు"
+        );
+
+
+        setText(
+            "dashboardRecordsLabel",
+            "📋 పని వివరాలు"
+        );
+
+
+        setText(
+            "dashboardWorkAmountLabel",
+            "💰 పని మొత్తం"
+        );
+
+
+        setText(
+            "dashboardExpenseAmountLabel",
+            "💵 పొలం ఖర్చులు"
+        );
+
+
+        setText(
+            "dashboardGrandTotalLabel",
+            "📊 మొత్తం ఖర్చు"
+        );
+
+
+        setText(
+            "exportCsvBtn",
+            "📥 CSV డౌన్‌లోడ్"
+        );
+
+
+        setText(
+            "printBtn",
+            "🖨️ ప్రింట్"
         );
 
 
@@ -1194,8 +1302,80 @@ function toggleLanguage() {
 
 
         setText(
+            "totalAcresLabel",
+            "Total Acres"
+        );
+
+
+        setText(
             "totalAmountLabel",
             "Total Amount"
+        );
+
+
+        setText(
+            "farmExpenseLabel",
+            "💰 Farm Expenses"
+        );
+
+
+        setText(
+            "grandTotalLabel",
+            "💵 Grand Total"
+        );
+
+
+        setText(
+            "dashboardTitle",
+            "📊 Farm Dashboard"
+        );
+
+
+        setText(
+            "dashboardWorkersLabel",
+            "👨‍🌾 Total Workers"
+        );
+
+
+        setText(
+            "dashboardAcresLabel",
+            "🌱 Total Acres"
+        );
+
+
+        setText(
+            "dashboardRecordsLabel",
+            "📋 Work Records"
+        );
+
+
+        setText(
+            "dashboardWorkAmountLabel",
+            "💰 Work Amount"
+        );
+
+
+        setText(
+            "dashboardExpenseAmountLabel",
+            "💵 Farm Expenses"
+        );
+
+
+        setText(
+            "dashboardGrandTotalLabel",
+            "📊 Grand Total"
+        );
+
+
+        setText(
+            "exportCsvBtn",
+            "📥 Export CSV"
+        );
+
+
+        setText(
+            "printBtn",
+            "🖨️ Print"
         );
 
 
@@ -1521,6 +1701,7 @@ function updateDashboard() {
 
 
     let workers = 0;
+    let totalAcresSum = 0;
 
 
     workRecords.forEach(
@@ -1528,6 +1709,9 @@ function updateDashboard() {
 
             workers +=
                 Number(record.workersCount) || 0;
+
+            totalAcresSum +=
+                Number(record.landSize) || 0;
 
         }
     );
@@ -1543,6 +1727,20 @@ function updateDashboard() {
 
         dashboardWorkers.textContent =
             workers;
+
+    }
+
+
+    const dashboardAcres =
+        document.getElementById(
+            "dashboardAcres"
+        );
+
+
+    if (dashboardAcres) {
+
+        dashboardAcres.textContent =
+            parseFloat(totalAcresSum.toFixed(2));
 
     }
 
@@ -1721,3 +1919,79 @@ window.addEventListener("load", function () {
     typeProjectName();
 
 });
+
+
+// ==========================================
+// EXPORT RECORDS TO CSV
+// ==========================================
+
+function exportRecordsToCSV() {
+
+    if (!records || records.length === 0) {
+
+        alert(
+            teluguMode
+                ? "డౌన్‌లోడ్ చేయడానికి ఎటువంటి వివరాలు లేవు."
+                : "No records to export."
+        );
+
+        return;
+
+    }
+
+    const headers = [
+        "Record ID",
+        "Date",
+        "Worker Name",
+        "Field Size (Acres)",
+        "Work Type",
+        "Number of Workers",
+        "Total Amount (INR)",
+        "Notes"
+    ];
+
+    const rows = records.map(function (record) {
+
+        return [
+            record.id,
+            record.date || "",
+            `"${(record.workerName || "").replace(/"/g, '""')}"`,
+            record.landSize || 0,
+            `"${(getWorkName(record.workType) || "").replace(/"/g, '""')}"`,
+            record.workersCount || 0,
+            record.amount || 0,
+            `"${(record.notes || "").replace(/"/g, '""')}"`
+        ];
+
+    });
+
+    const csvContent =
+        "\uFEFF" +
+        [headers.join(","), ...rows.map(function (e) { return e.join(","); })].join("\r\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    const dateStr = new Date().toISOString().slice(0, 10);
+
+    link.setAttribute("href", url);
+    link.setAttribute("download", `Farm_Work_Records_${dateStr}.csv`);
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+// ==========================================
+// PRINT RECORDS REPORT
+// ==========================================
+
+function printRecordsReport() {
+
+    window.print();
+
+}

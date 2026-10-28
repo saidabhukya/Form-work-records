@@ -126,8 +126,23 @@
                             0
                         </h3>
 
-                        <p>
+                        <p id="dashboardWorkersLabel">
                             👨‍🌾 Total Workers
+                        </p>
+
+                    </div>
+
+
+                    <!-- TOTAL ACRES -->
+
+                    <div class="dashboard-card">
+
+                        <h3 id="dashboardAcres">
+                            0
+                        </h3>
+
+                        <p id="dashboardAcresLabel">
+                            🌱 Total Acres
                         </p>
 
                     </div>
@@ -142,7 +157,7 @@
                             0
                         </h3>
 
-                        <p>
+                        <p id="dashboardRecordsLabel">
                             📋 Work Records
                         </p>
 
@@ -157,7 +172,7 @@
                             ₹<span id="dashboardWorkAmount">0</span>
                         </h3>
 
-                        <p>
+                        <p id="dashboardWorkAmountLabel">
                             💰 Work Amount
                         </p>
 
@@ -172,7 +187,7 @@
                             ₹<span id="dashboardExpenseAmount">0</span>
                         </h3>
 
-                        <p>
+                        <p id="dashboardExpenseAmountLabel">
                             💵 Farm Expenses
                         </p>
 
@@ -188,7 +203,7 @@
                             ₹<span id="dashboardGrandTotal">0</span>
                         </h3>
 
-                        <p>
+                        <p id="dashboardGrandTotalLabel">
                             📊 Grand Total
                         </p>
 
@@ -437,13 +452,103 @@
                 </h2>
 
 
-                <!-- SEARCH -->
+                <!-- CONTROLS: SEARCH, FILTER, EXPORT -->
 
-                <input
-                    type="text"
-                    id="search"
-                    placeholder="🔍 Search worker name..."
-                >
+                <div class="records-controls">
+
+                    <!-- SEARCH -->
+
+                    <input
+                        type="text"
+                        id="search"
+                        placeholder="🔍 Search worker name..."
+                    >
+
+                    <!-- WORK TYPE FILTER -->
+
+                    <select id="filterWorkType">
+
+                        <option value="">
+                            🌾 All Work Types
+                        </option>
+
+                        <option value="Sallu">
+                            Araka (Sallu)
+                        </option>
+
+                        <option value="Guntaka">
+                            Araka (Guntaka)
+                        </option>
+
+                        <option value="Mekullu">
+                            Araka (Mekullu)
+                        </option>
+
+                        <option value="Mandhu">
+                            Araka (Mandhu)
+                        </option>
+
+                        <option value="TractorGorru">
+                            Tractor (Gorru)
+                        </option>
+
+                        <option value="TractorSallu">
+                            Tractor (Sallu)
+                        </option>
+
+                        <option value="TractorBochallu">
+                            Tractor (Bochallu)
+                        </option>
+
+                        <option value="TractorRotavater">
+                            Tractor (Rotavater)
+                        </option>
+
+                        <option value="fertilizer spray">
+                            Tractor (Fertilizer Spray)
+                        </option>
+
+                        <option value="Uprooting chilli plants with a tractor">
+                            Uprooting chilli plants
+                        </option>
+
+                        <option value="Uprooting cotton stalks">
+                            Uprooting cotton stalks
+                        </option>
+
+                        <option value="Field Work">
+                            Field Work
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+                    <!-- ACTIONS -->
+
+                    <div class="records-actions">
+
+                        <button
+                            type="button"
+                            id="exportCsvBtn"
+                            onclick="exportRecordsToCSV()"
+                        >
+                            📥 Export CSV
+                        </button>
+
+                        <button
+                            type="button"
+                            id="printBtn"
+                            onclick="printRecordsReport()"
+                        >
+                            🖨️ Print
+                        </button>
+
+                    </div>
+
+                </div>
 
 
                 <!-- RECORDS -->
@@ -482,6 +587,21 @@
 
                         <p id="totalWorkersLabel">
                             Total Workers
+                        </p>
+
+                    </div>
+
+
+                    <!-- TOTAL ACRES -->
+
+                    <div>
+
+                        <h3 id="totalAcres">
+                            0
+                        </h3>
+
+                        <p id="totalAcresLabel">
+                            Total Acres
                         </p>
 
                     </div>
@@ -528,7 +648,7 @@
                             ₹<span id="farmExpenseAmount">0</span>
                         </h3>
 
-                        <p>
+                        <p id="farmExpenseLabel">
                             💰 Farm Expenses
                         </p>
 
@@ -544,7 +664,7 @@
                             ₹<span id="grandTotalAmount">0</span>
                         </h3>
 
-                        <p>
+                        <p id="grandTotalLabel">
                             💵 Grand Total
                         </p>
 

@@ -983,3 +983,117 @@ footer {
         font-size: 12px;
     }
 }
+
+/* ==========================================
+   RECORDS CONTROLS & ACTIONS
+========================================== */
+
+.records-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.records-controls #search {
+    flex: 2 1 200px;
+    margin: 0;
+}
+
+.records-controls #filterWorkType {
+    flex: 1 1 180px;
+    margin: 0;
+}
+
+.records-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.records-actions button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #2e7d32;
+    color: white;
+    transition: background 0.3s, transform 0.1s;
+    white-space: nowrap;
+}
+
+.records-actions button:hover {
+    background: #1b5e20;
+    transform: translateY(-1px);
+}
+
+.records-actions button:active {
+    transform: translateY(0);
+}
+
+#exportCsvBtn {
+    background: #2e7d32;
+}
+
+#printBtn {
+    background: #0277bd;
+}
+
+#printBtn:hover {
+    background: #01579b;
+}
+
+@media (max-width: 600px) {
+    .records-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .records-actions {
+        width: 100%;
+        display: flex;
+    }
+
+    .records-actions button {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* Print Friendly Styles */
+@media print {
+    #splash-screen,
+    header,
+    .form-section,
+    .records-controls,
+    .record-card button,
+    footer,
+    .page-links {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    #home-page {
+        display: block !important;
+    }
+
+    main {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .dashboard-section,
+    .records-section,
+    .summary {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid;
+    }
+}
