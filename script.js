@@ -42,6 +42,7 @@ const workRates = {
     "Guntaka": 700,
     "Mekullu": 700,
     "Mandhu": 700,
+    "Bhode": 700,
 
     "TractorGorru": 800,
     "TractorSallu": 800,
@@ -581,6 +582,9 @@ function getWorkName(type) {
         "Mandhu":
             "Araka (Mandhu)",
 
+        "Bhode":
+            "Araka (Bhode)",
+
         "TractorGorru":
             "Tractor (Gorru)",
 
@@ -624,6 +628,9 @@ function getWorkName(type) {
 
         "Mandhu":
             "అరక (మందు)",
+
+        "Bhode":
+            "అరక (బోదె)",
 
         "TractorGorru":
             "ట్రాక్టర్ (గొర్రు)",
@@ -1485,6 +1492,8 @@ function updateWorkOptionsEnglish() {
 
         "Araka (Mandhu) - ₹700 / Acre",
 
+        "Araka (Bhode) - ₹700 / Acre",
+
         "Tractor (Gorru) - ₹800 / Acre",
 
         "Tractor (Sallu) - ₹800 / Acre",
@@ -1546,6 +1555,8 @@ function updateWorkOptionsTelugu() {
         "అరక (మేకులు) - ₹700 / ఎకరం",
 
         "అరక (మందు) - ₹700 / ఎకరం",
+
+        "అరక (బోదె) - ₹700 / ఎకరం",
 
         "ట్రాక్టర్ (గొర్రు) - ₹800 / ఎకరం",
 
