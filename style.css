@@ -1097,3 +1097,43 @@ footer {
         page-break-inside: avoid;
     }
 }
+
+/* Page links and Backup/Restore buttons */
+.page-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.page-links a,
+.page-links button {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.backup-btn {
+    background: #1565c0;
+    color: white;
+}
+
+.backup-btn:hover {
+    background: #0d47a1;
+}
+
+.restore-btn {
+    background: #5e35b1;
+    color: white;
+}
+
+.restore-btn:hover {
+    background: #4527a0;
+}

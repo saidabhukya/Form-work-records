@@ -89,9 +89,37 @@
                 <a
                     href="expenses.html"
                     class="expense-page-btn"
+                    id="expensePageBtn"
                 >
                     💰 Farm Expenses
                 </a>
+
+                <button
+                    type="button"
+                    class="backup-btn"
+                    id="backupBtn"
+                    onclick="backupAllData()"
+                >
+                    💾 Backup Data
+                </button>
+
+                <button
+                    type="button"
+                    class="restore-btn"
+                    id="restoreBtn"
+                    onclick="document.getElementById('restoreFileInput').click()"
+                >
+                    📂 Restore Data
+                </button>
+
+                <input
+                    type="file"
+                    id="restoreFileInput"
+                    accept=".json"
+                    style="display: none;"
+                    onchange="restoreAllData(event)"
+                >
+
             </div>
 
         </header>

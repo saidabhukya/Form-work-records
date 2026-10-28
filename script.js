@@ -871,7 +871,7 @@ function updateSummary() {
             Number(record.amount) || 0;
 
         acres +=
-            Number(record.landSize) || 0;
+            parseFloat(record.landSize) || 0;
 
     });
 
@@ -1160,6 +1160,18 @@ function toggleLanguage() {
 
 
         setText(
+            "backupBtn",
+            "💾 డేటా బ్యాకప్"
+        );
+
+
+        setText(
+            "restoreBtn",
+            "📂 డేటా పునరుద్ధరణ"
+        );
+
+
+        setText(
             "footerText",
             "🌾 వ్యవసాయ పని రికార్డులు | భూక్యా సైదా నాయక్ అభివృద్ధి చేశారు"
         );
@@ -1376,6 +1388,18 @@ function toggleLanguage() {
         setText(
             "printBtn",
             "🖨️ Print"
+        );
+
+
+        setText(
+            "backupBtn",
+            "💾 Backup Data"
+        );
+
+
+        setText(
+            "restoreBtn",
+            "📂 Restore Data"
         );
 
 
@@ -1711,7 +1735,7 @@ function updateDashboard() {
                 Number(record.workersCount) || 0;
 
             totalAcresSum +=
-                Number(record.landSize) || 0;
+                parseFloat(record.landSize) || 0;
 
         }
     );
@@ -1993,5 +2017,125 @@ function exportRecordsToCSV() {
 function printRecordsReport() {
 
     window.print();
+
+}
+
+
+// ==========================================
+// BACKUP ALL DATA (JSON)
+// ==========================================
+
+function backupAllData() {
+
+    const backupObj = {
+        app: "FarmWorkRecords",
+        version: "1.0",
+        backupDate: new Date().toISOString(),
+        farmRecords: JSON.parse(localStorage.getItem("farmRecords")) || [],
+        farmExpenses: JSON.parse(localStorage.getItem("farmExpenses")) || []
+    };
+
+    const count = backupObj.farmRecords.length + backupObj.farmExpenses.length;
+
+    if (count === 0) {
+        alert(
+            teluguMode
+                ? "బ్యాకప్ చేయడానికి ఎటువంటి డేటా లేదు."
+                : "No data found to backup."
+        );
+        return;
+    }
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupObj, null, 2));
+    const dlAnchor = document.createElement("a");
+    const dateStr = new Date().toISOString().slice(0, 10);
+
+    dlAnchor.setAttribute("href", dataStr);
+    dlAnchor.setAttribute("download", `Farm_Records_Backup_${dateStr}.json`);
+    document.body.appendChild(dlAnchor);
+    dlAnchor.click();
+    document.body.removeChild(dlAnchor);
+
+    alert(
+        teluguMode
+            ? `✅ మీ డేటా బ్యాకప్ ఫైల్ డౌన్‌లోడ్ చేయబడింది! (${backupObj.farmRecords.length} పని రికార్డులు, ${backupObj.farmExpenses.length} ఖర్చులు)`
+            : `✅ Backup downloaded successfully! (${backupObj.farmRecords.length} work records, ${backupObj.farmExpenses.length} expenses)`
+    );
+
+}
+
+
+// ==========================================
+// RESTORE ALL DATA (JSON)
+// ==========================================
+
+function restoreAllData(event) {
+
+    const file = event.target.files && event.target.files[0];
+    if (!file) {
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            let importedRecords = [];
+            let importedExpenses = [];
+
+            if (Array.isArray(data)) {
+                importedRecords = data;
+            } else if (data && typeof data === "object") {
+                importedRecords = data.farmRecords || [];
+                importedExpenses = data.farmExpenses || [];
+            }
+
+            if (!Array.isArray(importedRecords) && !Array.isArray(importedExpenses)) {
+                throw new Error("Invalid format");
+            }
+
+            // Safely merge records without overwriting or deleting
+            const currentRecords = JSON.parse(localStorage.getItem("farmRecords")) || [];
+            const currentExpenses = JSON.parse(localStorage.getItem("farmExpenses")) || [];
+
+            const recordMap = new Map();
+            currentRecords.forEach(function(r) { recordMap.set(r.id, r); });
+            importedRecords.forEach(function(r) { recordMap.set(r.id || Date.now() + Math.random(), r); });
+
+            const expenseMap = new Map();
+            currentExpenses.forEach(function(x) { expenseMap.set(x.id, x); });
+            importedExpenses.forEach(function(x) { expenseMap.set(x.id || Date.now() + Math.random(), x); });
+
+            records = Array.from(recordMap.values());
+            localStorage.setItem("farmRecords", JSON.stringify(records));
+
+            if (importedExpenses.length > 0) {
+                localStorage.setItem("farmExpenses", JSON.stringify(Array.from(expenseMap.values())));
+            }
+
+            displayRecords();
+            updateSummary();
+            updateGrandTotal();
+            updateDashboard();
+
+            alert(
+                teluguMode
+                    ? `✅ డేటా విజయవంతంగా పునరుద్ధరించబడింది! మొత్తం ${records.length} పని వివరాలు అందుబాటులో ఉన్నాయి.`
+                    : `✅ Data restored successfully! Total ${records.length} records available.`
+            );
+
+        } catch (err) {
+            alert(
+                teluguMode
+                    ? "❌ సరైన బ్యాకప్ ఫైల్‌ను ఎంచుకోండి."
+                    : "❌ Failed to read backup file. Please select a valid JSON backup file."
+            );
+        }
+
+        event.target.value = "";
+    };
+
+    reader.readAsText(file);
 
 }
